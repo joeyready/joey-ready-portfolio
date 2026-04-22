@@ -1,36 +1,50 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Joey Ready Portfolio
 
-## Getting Started
+A modern photography portfolio built with Next.js, TypeScript, and React.
 
-First, run the development server:
+## Why I’m Building This
+
+This project is a **two birds, one stone** build:
+
+1. Rebuild my outdated photo portfolio with a faster, cleaner, more modern experience.
+2. Add a polished, real-world project to my programming portfolio.
+
+I wanted one site that showcases both my visual work and my ability to design/build production-quality web apps — especially in case recruiters or collaborators come across it *cough cough*, if thats you, please feel free to reach out ;)
+
+## Tech Stack
+
+- **Framework:** Next.js (App Router)
+- **Language:** TypeScript
+- **UI:** React
+- **Animation:** Framer Motion
+- **Styling:** Global CSS (with Tailwind tooling available in the project)
+- **Image Rendering:** `next/image` for optimization and responsive behavior
+- **Linting:** ESLint
+
+## Project Structure (Important)
+
+- `src/lib/photos.ts`
+  - Source of truth for all photo metadata
+  - Includes category, alt text, dimensions, and featured flags
+- `public/images/`
+  - Stores image files used by the gallery
+- `src/components/MasonryGallery.tsx`
+  - Renders the portfolio grid and lightbox
+- `src/app/work/page.tsx`
+  - “All Work” page
+- `src/app/work/[category]/page.tsx`
+  - Category-specific gallery pages
+
+## Notes for Future Me
+
+- Add images to `public/images/`, then register them in `src/lib/photos.ts`.
+- Keep `width`/`height` values accurate for proper masonry proportions.
+- `/work` currently follows the order of the `photos` array.
+- Category pages are generated from the category values in `photos.ts`.
+- If I want custom ordering later, add an `order` field and sort before render.
+
+## Local Development
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
