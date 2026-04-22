@@ -77,6 +77,13 @@ export const photos: Photo[] = [
     height: 1800,
   },
   {
+    id: 'Nova Sage',
+    src: '/images/nova-sage-1.jpg',
+    alt: 'Nova Sage',
+    category: 'Product',
+    width: 1800,
+    height: 2400,
+  },{
     id: 'Back Beat Co.',
     src: '/images/back-beat-co-1.jpg',
     alt: 'Back Beat Co.',
@@ -171,21 +178,32 @@ export const photos: Photo[] = [
 
   // ── FOOD & BEV ──
   {
-    id: 'food-001',
-    src: '/images/food-001.jpg',
-    alt: 'Food & beverage photography placeholder',
+    id: 'Ventura Coast Brewing Company',
+    src: '/images/vcbc-1.jpg',
+    alt: 'Ventura Coast Brewing Company',
     category: 'Food & Bev',
-    width: 3000,
-    height: 3000,
+    width: 1276,
+    height: 1021,
     featured: true,
   },
   {
-    id: 'food-002',
-    src: '/images/food-002.jpg',
-    alt: 'Food & beverage photography placeholder',
+    id: 'Ventura Coast Brewing Company',
+    src: '/images/vcbc-3.jpg',
+    alt: 'Ventura Coast Brewing Company',
     category: 'Food & Bev',
-    width: 4000,
-    height: 3000,
+    width: 1016,
+    height: 1270,
+    featured: true,
+  },
+
+  {
+    id: 'Ventura Coast Brewing Company',
+    src: '/images/vcbc-2.jpg',
+    alt: 'Ventura Coast Brewing Company',
+    category: 'Food & Bev',
+    width: 1295,
+    height: 1036,
+    featured: true,
   },
 ];
 

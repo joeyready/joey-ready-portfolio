@@ -24,9 +24,9 @@ export default function Footer() {
 
       <div style={{ display: 'flex', gap: 24 }}>
         {[
-          { label: 'Instagram', href: 'https://instagram.com/joeyready' },
-          { label: 'LinkedIn', href: 'https://linkedin.com/in/joeyready' },
-          { label: 'Vimeo', href: 'https://vimeo.com/joeyready' },
+          { label: 'Instagram', href: 'https://instagram.com/joeyreadyphoto' },
+          { label: 'LinkedIn', href: 'https://linkedin.com/in/joey-ready/' },
+          // { label: 'Vimeo', href: 'https://vimeo.com/joeyready' },
         ].map(({ label, href }) => (
           <a
             key={label}
