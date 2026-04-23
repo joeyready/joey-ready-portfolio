@@ -23,6 +23,9 @@ export interface Photo {
   width: number;
   height: number;
   featured?: boolean;   // show on homepage featured grid
+  storyId?: string;     // group related photos into a mini story
+  storyTitle?: string;  // display title for a story group
+  storyOrder?: number;  // order inside a story group (1..N)
 }
 
 // ─── ADD YOUR PHOTOS HERE ────────────────────────────────────────────────────
@@ -137,6 +140,61 @@ export const photos: Photo[] = [
     width: 3000,
     height: 3000,
   },
+  {
+    id: 'thankyoux-1',
+    src: '/images/thankyoux-1.jpg',
+    alt: 'ThankYouX portrait in studio',
+    category: 'Portrait',
+    width: 2000,
+    height: 1581,
+    storyId: 'thankyoux',
+    storyTitle: 'ThankYouX',
+    storyOrder: 1,
+  },
+  {
+    id: 'thankyoux-2',
+    src: '/images/thankyoux-2.jpg',
+    alt: 'ThankYouX studio detail',
+    category: 'Portrait',
+    width: 2000,
+    height: 1343,
+    storyId: 'thankyoux',
+    storyTitle: 'ThankYouX',
+    storyOrder: 2,
+  },
+  {
+    id: 'thankyoux-3',
+    src: '/images/thankyoux-3.jpg',
+    alt: 'ThankYouX painting action',
+    category: 'Portrait',
+    width: 2000,
+    height: 1343,
+    storyId: 'thankyoux',
+    storyTitle: 'ThankYouX',
+    storyOrder: 3,
+  },
+  {
+    id: 'thankyoux-4',
+    src: '/images/thankyoux-4.jpg',
+    alt: 'ThankYouX studio process',
+    category: 'Portrait',
+    width: 2000,
+    height: 1342,
+    storyId: 'thankyoux',
+    storyTitle: 'ThankYouX',
+    storyOrder: 4,
+  },
+  {
+    id: 'thankyoux-5',
+    src: '/images/thankyoux-5.jpg',
+    alt: 'ThankYouX final portrait',
+    category: 'Portrait',
+    width: 2000,
+    height: 1343,
+    storyId: 'thankyoux',
+    storyTitle: 'ThankYouX',
+    storyOrder: 5,
+  },
 
   // ── E-COMMERCE ──
   {
@@ -213,4 +271,10 @@ export function getPhotosByCategory(category: Category): Photo[] {
 
 export function getFeaturedPhotos(): Photo[] {
   return photos.filter((p) => p.featured);
+}
+
+export function getPhotosByStory(storyId: string): Photo[] {
+  return photos
+    .filter((p) => p.storyId === storyId)
+    .sort((a, b) => (a.storyOrder ?? 999) - (b.storyOrder ?? 999));
 }
