@@ -35,9 +35,9 @@ export default async function CategoryPage({
             {category}{' '}
             <em style={{ fontStyle: 'italic', color: 'var(--accent)', display: 'block' }}>Photography</em>
           </h1>
-          <span style={{ fontSize: 11, letterSpacing: '0.2em', color: 'var(--muted)' }}>
+          {/* <span style={{ fontSize: 11, letterSpacing: '0.2em', color: 'var(--muted)' }}>
             {photos.length} photographs
-          </span>
+          </span> */}
         </div>
 
         <CategoryTabs activeCategory={category} />
