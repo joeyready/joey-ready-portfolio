@@ -57,9 +57,9 @@ export default function ContactPage() {
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
               {[
-                { icon: '✉', label: 'Email', value: 'joey@joeyready.com', href: 'mailto:joey@joeyready.com' },
-                { icon: '◎', label: 'Location', value: 'Los Angeles, CA', href: null },
-                { icon: '↗', label: 'Instagram', value: '@joeyready', href: 'https://instagram.com/joeyready' },
+                // { icon: '✉', label: 'Email', value: 'joey@joeyready.com', href: 'mailto:joey@joeyready.com' },
+                { icon: '◎', label: 'Location', value: 'Southern California, USA', href: null },
+                { icon: '↗', label: 'Instagram', value: '@joeyreadyphoto', href: 'https://instagram.com/joeyreadyphoto' },
               ].map(({ icon, label, value, href }) => (
                 <div key={label} style={{ display: 'flex', gap: 16, alignItems: 'flex-start' }}>
                   <div style={{
