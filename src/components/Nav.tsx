@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { CATEGORIES } from '@/lib/photos';
+import { CATEGORIES, categoryToSlug } from '@/lib/photos';
 
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
@@ -56,7 +56,7 @@ export default function Nav() {
           <li><NavLink href="/work">Work</NavLink></li>
           {CATEGORIES.slice(0, 3).map((cat) => (
             <li key={cat}>
-              <NavLink href={`/work/${encodeURIComponent(cat.toLowerCase().replace(/ & /g, '-'))}`}>
+              <NavLink href={`/work/${categoryToSlug(cat)}`}>
                 {cat}
               </NavLink>
             </li>
@@ -115,13 +115,13 @@ export default function Nav() {
         transition: 'opacity 0.4s',
       }}>
         {['/', '/work', '/contact', ...CATEGORIES.map(c =>
-          `/work/${encodeURIComponent(c.toLowerCase().replace(/ & /g, '-'))}`
+          `/work/${categoryToSlug(c)}`
         )].map((href, i) => {
           const labels: Record<string, string> = {
             '/': 'Home', '/work': 'All Work', '/contact': 'Contact',
           };
           CATEGORIES.forEach(c => {
-            labels[`/work/${encodeURIComponent(c.toLowerCase().replace(/ & /g, '-'))}`] = c;
+            labels[`/work/${categoryToSlug(c)}`] = c;
           });
           return (
             <Link key={href} href={href} style={{

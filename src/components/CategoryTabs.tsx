@@ -1,10 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { CATEGORIES, Category } from '@/lib/photos';
-
-const catSlug = (c: string) =>
-  encodeURIComponent(c.toLowerCase().replace(/ & /g, '-'));
+import { CATEGORIES, Category, categoryToSlug } from '@/lib/photos';
 
 const tabStyle: React.CSSProperties = {
   padding: '20px 28px',
@@ -44,7 +41,7 @@ export default function CategoryTabs({ activeCategory }: { activeCategory?: Cate
         return (
           <Link
             key={cat}
-            href={`/work/${catSlug(cat)}`}
+            href={`/work/${categoryToSlug(cat)}`}
             style={{
               ...tabStyle,
               color: isActive ? 'var(--accent)' : 'var(--muted)',

@@ -1,18 +1,12 @@
 export type Category =
   | 'Product'
-  | 'Lifestyle'
-  | 'Portrait'
-  | 'E-commerce'
-  | 'Event'
-  | 'Food & Bev';
+  | 'People'
+  | 'Food + Beverage';
 
 export const CATEGORIES: Category[] = [
   'Product',
-  'Lifestyle',
-  'Portrait',
-  'E-commerce',
-  'Event',
-  'Food & Bev',
+  'People',
+  'Food + Beverage',
 ];
 
 export interface Photo {
@@ -103,12 +97,12 @@ export const photos: Photo[] = [
     height: 1260,
   },
 
-  // ── LIFESTYLE ──
+  // ── PEOPLE ──
   {
     id: 'lifestyle-001',
     src: '/images/lifestyle-001.jpg',
     alt: 'Lifestyle photography placeholder',
-    category: 'Lifestyle',
+    category: 'People',
     width: 4000,
     height: 3000,
     featured: true,
@@ -117,17 +111,17 @@ export const photos: Photo[] = [
     id: 'lifestyle-002',
     src: '/images/lifestyle-002.jpg',
     alt: 'Lifestyle photography placeholder',
-    category: 'Lifestyle',
+    category: 'People',
     width: 3000,
     height: 4500,
   },
 
-  // ── PORTRAIT ──
+  // ── PEOPLE ──
   {
     id: 'portrait-001',
     src: '/images/portrait-001.jpg',
     alt: 'Portrait photography placeholder',
-    category: 'Portrait',
+    category: 'People',
     width: 3000,
     height: 4000,
     featured: true,
@@ -136,7 +130,7 @@ export const photos: Photo[] = [
     id: 'portrait-002',
     src: '/images/portrait-002.jpg',
     alt: 'Portrait photography placeholder',
-    category: 'Portrait',
+    category: 'People',
     width: 3000,
     height: 3000,
   },
@@ -144,7 +138,7 @@ export const photos: Photo[] = [
     id: 'thankyoux-1',
     src: '/images/thankyoux-1.jpg',
     alt: 'ThankYouX portrait in studio',
-    category: 'Portrait',
+    category: 'People',
     width: 2000,
     height: 1581,
     storyId: 'thankyoux',
@@ -155,7 +149,7 @@ export const photos: Photo[] = [
     id: 'thankyoux-2',
     src: '/images/thankyoux-2.jpg',
     alt: 'ThankYouX studio detail',
-    category: 'Portrait',
+    category: 'People',
     width: 2000,
     height: 1343,
     storyId: 'thankyoux',
@@ -166,7 +160,7 @@ export const photos: Photo[] = [
     id: 'thankyoux-3',
     src: '/images/thankyoux-3.jpg',
     alt: 'ThankYouX painting action',
-    category: 'Portrait',
+    category: 'People',
     width: 2000,
     height: 1343,
     storyId: 'thankyoux',
@@ -177,7 +171,7 @@ export const photos: Photo[] = [
     id: 'thankyoux-4',
     src: '/images/thankyoux-4.jpg',
     alt: 'ThankYouX studio process',
-    category: 'Portrait',
+    category: 'People',
     width: 2000,
     height: 1342,
     storyId: 'thankyoux',
@@ -188,7 +182,7 @@ export const photos: Photo[] = [
     id: 'thankyoux-5',
     src: '/images/thankyoux-5.jpg',
     alt: 'ThankYouX final portrait',
-    category: 'Portrait',
+    category: 'People',
     width: 2000,
     height: 1343,
     storyId: 'thankyoux',
@@ -196,12 +190,12 @@ export const photos: Photo[] = [
     storyOrder: 5,
   },
 
-  // ── E-COMMERCE ──
+  // ── PRODUCT ──
   {
     id: 'ecom-001',
     src: '/images/ecom-001.jpg',
     alt: 'E-commerce photography placeholder',
-    category: 'E-commerce',
+    category: 'Product',
     width: 3000,
     height: 3000,
     featured: true,
@@ -210,17 +204,17 @@ export const photos: Photo[] = [
     id: 'ecom-002',
     src: '/images/ecom-002.jpg',
     alt: 'E-commerce photography placeholder',
-    category: 'E-commerce',
+    category: 'Product',
     width: 4000,
     height: 3000,
   },
 
-  // ── EVENT ──
+  // ── PEOPLE ──
   {
     id: 'event-001',
     src: '/images/event-001.jpg',
     alt: 'Event photography placeholder',
-    category: 'Event',
+    category: 'People',
     width: 4000,
     height: 2700,
     featured: true,
@@ -229,17 +223,17 @@ export const photos: Photo[] = [
     id: 'event-002',
     src: '/images/event-002.jpg',
     alt: 'Event photography placeholder',
-    category: 'Event',
+    category: 'People',
     width: 3000,
     height: 4000,
   },
 
-  // ── FOOD & BEV ──
+  // ── FOOD + BEVERAGE ──
   {
     id: 'Ventura Coast Brewing Company',
     src: '/images/vcbc-1.jpg',
     alt: 'Ventura Coast Brewing Company',
-    category: 'Food & Bev',
+    category: 'Food + Beverage',
     width: 1276,
     height: 1021,
     featured: true,
@@ -248,7 +242,7 @@ export const photos: Photo[] = [
     id: 'Ventura Coast Brewing Company',
     src: '/images/vcbc-3.jpg',
     alt: 'Ventura Coast Brewing Company',
-    category: 'Food & Bev',
+    category: 'Food + Beverage',
     width: 1016,
     height: 1270,
     featured: true,
@@ -258,12 +252,24 @@ export const photos: Photo[] = [
     id: 'Ventura Coast Brewing Company',
     src: '/images/vcbc-2.jpg',
     alt: 'Ventura Coast Brewing Company',
-    category: 'Food & Bev',
+    category: 'Food + Beverage',
     width: 1295,
     height: 1036,
     featured: true,
   },
 ];
+
+export function categoryToSlug(category: Category): string {
+  return category
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-|-$/g, '');
+}
+
+export function slugToCategory(slug: string): Category | null {
+  const decoded = decodeURIComponent(slug);
+  return CATEGORIES.find((category) => categoryToSlug(category) === decoded) ?? null;
+}
 
 export function getPhotosByCategory(category: Category): Photo[] {
   return photos.filter((p) => p.category === category);

@@ -1,19 +1,12 @@
 import { notFound } from 'next/navigation';
-import { CATEGORIES, Category, getPhotosByCategory } from '@/lib/photos';
+import { CATEGORIES, Category, categoryToSlug, getPhotosByCategory, slugToCategory } from '@/lib/photos';
 import MasonryGallery from '@/components/MasonryGallery';
 import Footer from '@/components/Footer';
 import CategoryTabs from '@/components/CategoryTabs';
 
-const slugToCategory = (slug: string): Category | null => {
-  const decoded = decodeURIComponent(slug);
-  return CATEGORIES.find(
-    (c) => c.toLowerCase().replace(/ & /g, '-') === decoded
-  ) ?? null;
-};
-
 export function generateStaticParams() {
   return CATEGORIES.map((cat) => ({
-    category: encodeURIComponent(cat.toLowerCase().replace(/ & /g, '-')),
+    category: categoryToSlug(cat),
   }));
 }
 
