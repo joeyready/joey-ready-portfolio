@@ -6,11 +6,11 @@ import Cursor from '@/components/Cursor';
 export const metadata: Metadata = {
   title: 'Joey Ready — Photographer & Videographer',
   description: 'Los Angeles-based commercial photographer and content creator.',
+  // TODO: update metadataBase to https://www.joeyready.com once domain is connected
   metadataBase: new URL('https://joey-ready-portfolio.vercel.app'),
   openGraph: {
     title: 'Joey Ready — Photographer',
     description: 'Los Angeles-based commercial photographer and content creator.',
-    // TODO: update metadataBase to https://www.joeyready.com once domain is connected
     url: 'https://joey-ready-portfolio.vercel.app',
     siteName: 'Joey Ready',
     type: 'website',
@@ -30,3 +30,15 @@ export const metadata: Metadata = {
     images: ['/og-image.jpg'],
   },
 };
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="en">
+      <body>
+        <Cursor />
+        <Nav />
+        <main>{children}</main>
+      </body>
+    </html>
+  );
+}
