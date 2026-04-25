@@ -131,6 +131,15 @@ export const photos: Photo[] = [
     width: 1200,
     height: 675,
   },
+  {
+    id: 'Blush Wellness',
+    src: '/images/blush-wellness-4.jpg',
+    alt: 'Blush Wellness',
+    category: 'Product',
+    width: 1800,
+    height: 1800,
+  },
+
 
   // ── PEOPLE ──
 
