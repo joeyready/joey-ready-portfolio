@@ -80,7 +80,8 @@ export const photos: Photo[] = [
     category: 'Product',
     width: 1800,
     height: 2400,
-  },{
+  },
+  {
     id: 'Back Beat Co.',
     src: '/images/back-beat-co-1.jpg',
     alt: 'Back Beat Co.',
@@ -96,44 +97,43 @@ export const photos: Photo[] = [
     width: 1600,
     height: 1260,
   },
-
-  // ── PEOPLE ──
   {
-    id: 'lifestyle-001',
-    src: '/images/lifestyle-001.jpg',
-    alt: 'Lifestyle photography placeholder',
-    category: 'People',
-    width: 4000,
-    height: 3000,
+    id: 'Better Booch',
+    src: '/images/better-booch-2.jpg',
+    alt: 'Better Booch',
+    category: 'Product',
+    width: 1920,
+    height: 1920,
     featured: true,
   },
   {
-    id: 'lifestyle-002',
-    src: '/images/lifestyle-002.jpg',
-    alt: 'Lifestyle photography placeholder',
-    category: 'People',
-    width: 3000,
-    height: 4500,
+    id: 'Charlotte Stone Shoes',
+    src: '/images/charlotte-stone-shoes-3.jpg',
+    alt: 'Charlotte Stone Shoes',
+    category: 'Product',
+    width: 1600,
+    height: 1600,
+  },
+
+  {
+    id: 'Back Beat Co.',
+    src: '/images/back-beat-co-2.jpg',
+    alt: 'Back Beat Co.',
+    category: 'Product',
+    width: 1920,
+    height: 2400,
+  },
+  {
+    id: 'Blush Wellness',
+    src: '/images/blush-wellness-3.gif',
+    alt: 'Blush Wellness',
+    category: 'Product',
+    width: 1200,
+    height: 675,
   },
 
   // ── PEOPLE ──
-  {
-    id: 'portrait-001',
-    src: '/images/portrait-001.jpg',
-    alt: 'Portrait photography placeholder',
-    category: 'People',
-    width: 3000,
-    height: 4000,
-    featured: true,
-  },
-  {
-    id: 'portrait-002',
-    src: '/images/portrait-002.jpg',
-    alt: 'Portrait photography placeholder',
-    category: 'People',
-    width: 3000,
-    height: 3000,
-  },
+
   {
     id: 'thankyoux-1',
     src: '/images/thankyoux-1.jpg',
@@ -190,26 +190,8 @@ export const photos: Photo[] = [
     storyOrder: 5,
   },
 
-  // ── PRODUCT ──
-  {
-    id: 'ecom-001',
-    src: '/images/ecom-001.jpg',
-    alt: 'E-commerce photography placeholder',
-    category: 'Product',
-    width: 3000,
-    height: 3000,
-    featured: true,
-  },
-  {
-    id: 'ecom-002',
-    src: '/images/ecom-002.jpg',
-    alt: 'E-commerce photography placeholder',
-    category: 'Product',
-    width: 4000,
-    height: 3000,
-  },
 
-  // ── PEOPLE ──
+  // ── EVENT ──
   {
     id: 'event-001',
     src: '/images/event-001.jpg',
