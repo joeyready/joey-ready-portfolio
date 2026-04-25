@@ -192,23 +192,23 @@ export const photos: Photo[] = [
 
 
   // ── EVENT ──
-  {
-    id: 'event-001',
-    src: '/images/event-001.jpg',
-    alt: 'Event photography placeholder',
-    category: 'People',
-    width: 4000,
-    height: 2700,
-    featured: true,
-  },
-  {
-    id: 'event-002',
-    src: '/images/event-002.jpg',
-    alt: 'Event photography placeholder',
-    category: 'People',
-    width: 3000,
-    height: 4000,
-  },
+  // {
+  //   id: 'event-001',
+  //   src: '/images/event-001.jpg',
+  //   alt: 'Event photography placeholder',
+  //   category: 'People',
+  //   width: 4000,
+  //   height: 2700,
+  //   featured: true,
+  // },
+  // {
+  //   id: 'event-002',
+  //   src: '/images/event-002.jpg',
+  //   alt: 'Event photography placeholder',
+  //   category: 'People',
+  //   width: 3000,
+  //   height: 4000,
+  // },
 
   // ── FOOD + BEVERAGE ──
   {
