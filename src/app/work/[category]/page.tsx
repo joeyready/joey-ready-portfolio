@@ -23,17 +23,17 @@ export default async function CategoryPage({
 
   return (
     <>
-      <div style={{ paddingTop: 120 }}>
+      <div style={{ paddingTop: 36 }}>
         <div style={{
-          padding: '60px 64px 48px',
+          padding: '60px 64px 24px',
           borderBottom: '1px solid var(--border)',
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'flex-end',
         }} className="gallery-header">
-          <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(48px,6vw,88px)', fontWeight: 300, lineHeight: 0.95 }}>
-            {category}{' '}
-            <em style={{ fontStyle: 'italic', color: 'var(--accent)', display: 'block' }}>Photography</em>
+          <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(48px,6vw,88px)', fontWeight: 300, lineHeight: 0.95, }}>
+            {category}
+            {/* <em style={{ fontStyle: 'italic', color: 'var(--accent)', display: 'block' }}>Photography</em> */}
           </h1>
           {/* <span style={{ fontSize: 11, letterSpacing: '0.2em', color: 'var(--muted)' }}>
             {photos.length} photographs
