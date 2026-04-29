@@ -29,8 +29,10 @@ export default function Nav() {
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',
-          padding: '28px 48px',
-          background: scrolled ? 'rgba(8,8,8,0.92)' : 'linear-gradient(to bottom, rgba(8,8,8,0.9) 0%, transparent 100%)',
+          padding: '26px 48px',
+          background: scrolled
+          ? 'rgba(8,8,8,0.92)'
+          : 'linear-gradient(to bottom, rgba(8,8,8,0.95) 0%, rgba(8,8,8,0.75) 100%)',
           backdropFilter: scrolled ? 'blur(12px)' : 'none',
           borderBottom: scrolled ? '1px solid var(--border)' : 'none',
           transition: 'background 0.4s, backdrop-filter 0.4s, border-color 0.4s',

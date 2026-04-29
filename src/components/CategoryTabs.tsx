@@ -24,6 +24,7 @@ export default function CategoryTabs({ activeCategory }: { activeCategory?: Cate
       display: 'flex',
       borderBottom: '1px solid var(--border)',
       overflowX: 'auto',
+      overflowY: 'hidden',
       padding: '0 64px',
     }} className="cat-tabs">
       <Link
@@ -55,6 +56,13 @@ export default function CategoryTabs({ activeCategory }: { activeCategory?: Cate
         );
       })}
       <style>{`
+        .cat-tabs{
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+        .cat-tabs::-webkit-scrollbar{
+          display: none;
+        }
         @media(max-width:1024px){ .cat-tabs{padding-left:40px!important;padding-right:40px!important} }
         @media(max-width:640px){ .cat-tabs{padding-left:20px!important;padding-right:20px!important} }
       `}</style>
