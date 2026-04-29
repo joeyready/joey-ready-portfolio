@@ -30,12 +30,8 @@ body {
   font-size: 14px;
   letter-spacing: 0.03em;
   overflow-x: hidden;
-  cursor: none;
 }
 
-@media (pointer: fine) {
-  *, *::before, *::after { cursor: none !important; }
-}
 
 body::before {
   content: '';

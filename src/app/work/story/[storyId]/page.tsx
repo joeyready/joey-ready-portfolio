@@ -20,10 +20,10 @@ export default async function StoryPage({
 
   return (
     <>
-      <div style={{ paddingTop: 120 }}>
+      <div style={{ paddingTop: 36 }}>
         <div
           style={{
-            padding: '56px 64px 32px',
+            padding: '60px 64px 24px',
             borderBottom: '1px solid var(--border)',
             display: 'flex',
             justifyContent: 'space-between',
@@ -36,7 +36,7 @@ export default async function StoryPage({
           <h1
             style={{
               fontFamily: 'var(--font-display)',
-              fontSize: 'clamp(42px,5.5vw,82px)',
+              fontSize: 'clamp(48px,6vw,88px)',
               fontWeight: 300,
               lineHeight: 0.95,
             }}
@@ -78,6 +78,11 @@ export default async function StoryPage({
             </div>
           )}
         </section>
+        {storyId === 'thankyoux' && (
+  <p style={{ textAlign: 'center', fontSize: 12, marginTop: -60, marginBottom: 20 }}>
+    <a href="https://thankyoux.com" target="_blank" rel="noreferrer" style={{ fontWeight: 600 }}>http://ThankYouX.com</a>
+  </p>
+)}
       </div>
       <Footer />
       <style>{`

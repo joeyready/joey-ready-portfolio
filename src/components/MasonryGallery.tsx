@@ -118,7 +118,6 @@ export default function MasonryGallery({ photos }: MasonryGalleryProps) {
                       overflow: 'hidden',
                       background: 'var(--surface)',
                       aspectRatio: `${photo.width} / ${photo.height}`,
-                      cursor: 'none',
                     }}
                     className="gallery-item"
                   >
