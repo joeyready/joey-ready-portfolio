@@ -229,6 +229,17 @@ export const photos: Photo[] = [
     height: 1021,
     featured: true,
   },
+
+  {
+    id: 'Oscar\'s Meat Pies',
+    src: '/images/oscars-meat-pies-1.jpg',
+    alt: 'Oscar\'s Meat Pies',
+    category: 'Food + Beverage',
+    width: 1200,
+    height: 894,
+    featured: true,
+  },
+
   {
     id: 'Ventura Coast Brewing Company',
     src: '/images/vcbc-3.jpg',
