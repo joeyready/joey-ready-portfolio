@@ -36,6 +36,20 @@ export interface Photo {
 //   height: 4000,
 //   featured: true,
 // },
+
+// Example with story grouping:
+// {
+//     id: 'thankyoux-1',
+//     src: '/images/thankyoux-1.jpg',
+//     alt: 'ThankYouX portrait in studio',
+//     category: 'People',
+//     width: 2000,
+//     height: 1581,
+//     storyId: 'thankyoux',
+//     storyTitle: 'ThankYouX',
+//     storyOrder: 1,
+//   },
+
 // ─────────────────────────────────────────────────────────────────────────────
 
 export const photos: Photo[] = [
@@ -142,6 +156,7 @@ export const photos: Photo[] = [
 
 
   // ── PEOPLE ──
+
 
   {
     id: 'thankyoux-1',
@@ -280,7 +295,6 @@ export const photos: Photo[] = [
     storyTitle: 'Oscar\'s Meat Pies',
     storyOrder: 3,
   },
-   
   {
     id: 'Ventura Coast Brewing Company',
     src: '/images/vcbc-2.jpg',
