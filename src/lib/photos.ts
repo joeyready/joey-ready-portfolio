@@ -229,7 +229,6 @@ export const photos: Photo[] = [
     height: 1021,
     featured: true,
   },
-
   {
     id: 'Oscar\'s Meat Pies',
     src: '/images/oscars-meat-pies-1.jpg',
@@ -239,7 +238,6 @@ export const photos: Photo[] = [
     height: 894,
     featured: true,
   },
-
   {
     id: 'Ventura Coast Brewing Company',
     src: '/images/vcbc-3.jpg',
@@ -247,16 +245,6 @@ export const photos: Photo[] = [
     category: 'Food + Beverage',
     width: 1016,
     height: 1270,
-    featured: true,
-  },
-
-  {
-    id: 'Ventura Coast Brewing Company',
-    src: '/images/vcbc-2.jpg',
-    alt: 'Ventura Coast Brewing Company',
-    category: 'Food + Beverage',
-    width: 1295,
-    height: 1036,
     featured: true,
   },
   {
@@ -291,6 +279,16 @@ export const photos: Photo[] = [
     storyId: 'oscars-1',
     storyTitle: 'Oscar\'s Meat Pies',
     storyOrder: 3,
+  },
+   
+  {
+    id: 'Ventura Coast Brewing Company',
+    src: '/images/vcbc-2.jpg',
+    alt: 'Ventura Coast Brewing Company',
+    category: 'Food + Beverage',
+    width: 1295,
+    height: 1036,
+    featured: true,
   },
 ];
 
