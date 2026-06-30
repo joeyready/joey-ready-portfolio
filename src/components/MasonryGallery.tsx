@@ -340,9 +340,9 @@ export default function MasonryGallery({ photos }: MasonryGalleryProps) {
                             {card.storyCount} Photo Story
                           </span>
                         </>
-                      ) : (
+                      ) : photo.type !== 'video' ? (
                         <span style={{ fontSize: 28, color: 'rgba(255,255,255,0.8)', fontWeight: 200 }}>+</span>
-                      )}
+                      ) : null}
                     </div>
                   </motion.div>
                 );
