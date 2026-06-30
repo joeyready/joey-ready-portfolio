@@ -55,8 +55,8 @@ export default function Nav() {
         {/* Desktop links */}
         <ul style={{ display: 'flex', gap: 40, listStyle: 'none', alignItems: 'center' }}
             className="nav-desktop">
-          <li><NavLink href="/work">Work</NavLink></li>
-          {CATEGORIES.slice(0, 3).map((cat) => (
+          <li><NavLink href="/work">All Work</NavLink></li>
+          {CATEGORIES.slice(0, 4).map((cat) => (
             <li key={cat}>
               <NavLink href={`/work/${categoryToSlug(cat)}`}>
                 {cat}

@@ -1,12 +1,14 @@
 export type Category =
   | 'Product'
   | 'People'
-  | 'Food + Beverage';
+  | 'Food + Beverage'
+  | 'Video';
 
 export const CATEGORIES: Category[] = [
   'Product',
   'People',
   'Food + Beverage',
+  'Video',
 ];
 
 export interface Photo {
@@ -20,6 +22,7 @@ export interface Photo {
   storyId?: string;     // group related photos into a mini story
   storyTitle?: string;  // display title for a story group
   storyOrder?: number;  // order inside a story group (1..N)
+  type?: 'photo' | 'video'; //this allows for video to be added to the gallery in the future
 }
 
 // ─── ADD YOUR PHOTOS HERE ────────────────────────────────────────────────────
@@ -303,6 +306,33 @@ export const photos: Photo[] = [
     width: 1295,
     height: 1036,
     featured: true,
+  },
+  {
+    id: 'Video-1',
+    src: 'https://www.youtube.com/embed/0TuEQYNJp-Q',
+    alt: 'Stephanie Schecter - Super 8 Surf Film',
+    category: 'Video',
+    width: 16,
+    height: 9,
+    type: 'video',
+  },
+  {
+    id: 'Video-2',
+    src: 'https://vimeo.com/239741805?fl=pl&fe=vl',
+    alt: 'Charlotte Stone Shoes - Small Steps',
+    category: 'Video',
+    width: 16,
+    height: 9,
+    type: 'video',
+  },
+  {
+    id: 'Video-3',
+    src: 'https://vimeo.com/337378775?fl=pl&fe=vl',
+    alt: 'Jim Hutton Real Estate',
+    category: 'Video',
+    width: 16,
+    height: 9,
+    type: 'video',
   },
 ];
 

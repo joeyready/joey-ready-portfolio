@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -21,12 +21,123 @@ type GalleryCard =
   | { key: string; type: 'photo'; photo: Photo }
   | { key: string; type: 'story'; cover: Photo; storyId: string; storyTitle: string; storyCount: number };
 
+function getVideoThumbnailSrc(src: string): string | null {
+  try {
+    const url = new URL(src);
+
+    if (url.hostname.includes('youtube.com') || url.hostname.includes('youtu.be')) {
+      const videoId =
+        url.searchParams.get('v') ??
+        url.pathname.split('/').filter(Boolean).pop() ??
+        '';
+
+      if (videoId) {
+        return `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
+      }
+
+      const embedMatch = src.match(/\/embed\/([a-zA-Z0-9_-]+)/);
+      if (embedMatch?.[1]) {
+        return `https://img.youtube.com/vi/${embedMatch[1]}/maxresdefault.jpg`;
+      }
+    }
+
+    if (url.hostname.includes('vimeo.com') || url.hostname.includes('player.vimeo.com')) {
+      const pathParts = url.pathname.split('/').filter(Boolean);
+      const videoId = pathParts.includes('video')
+        ? pathParts[pathParts.indexOf('video') + 1]
+        : pathParts[pathParts.length - 1];
+
+      if (videoId && /^\d+$/.test(videoId)) {
+        return `https://i.vimeocdn.com/video/${videoId}_640x360.jpg`;
+      }
+    }
+  } catch {
+    // Ignore invalid URLs and fall back to a placeholder.
+  }
+
+  return null;
+}
+
+function getVideoEmbedUrl(src: string): string {
+  try {
+    const url = new URL(src);
+
+    if (url.hostname.includes('youtube.com') || url.hostname.includes('youtu.be')) {
+      const videoId =
+        url.searchParams.get('v') ??
+        url.pathname.split('/').filter(Boolean).pop() ??
+        '';
+
+      if (videoId) {
+        return `https://www.youtube.com/embed/${videoId}`;
+      }
+
+      const embedMatch = src.match(/\/embed\/([a-zA-Z0-9_-]+)/);
+      if (embedMatch?.[1]) {
+        return `https://www.youtube.com/embed/${embedMatch[1]}`;
+      }
+    }
+
+    if (url.hostname.includes('vimeo.com') || url.hostname.includes('player.vimeo.com')) {
+      const pathParts = url.pathname.split('/').filter(Boolean);
+      const videoId = pathParts.includes('video')
+        ? pathParts[pathParts.indexOf('video') + 1]
+        : pathParts[pathParts.length - 1];
+
+      if (videoId && /^\d+$/.test(videoId)) {
+        return `https://player.vimeo.com/video/${videoId}?title=0&byline=0&portrait=0`;
+      }
+    }
+  } catch {
+    // Ignore invalid URLs and fall back to the original source.
+  }
+
+  return src;
+}
+
+async function getRemoteVideoThumbnail(src: string): Promise<string | null> {
+  try {
+    const url = new URL(src);
+
+    if (url.hostname.includes('vimeo.com') || url.hostname.includes('player.vimeo.com')) {
+      const response = await fetch(`https://vimeo.com/api/oembed.json?url=${encodeURIComponent(src)}`);
+      if (!response.ok) {
+        throw new Error('Unable to fetch Vimeo thumbnail');
+      }
+
+      const data = await response.json() as { thumbnail_url?: string };
+      if (typeof data.thumbnail_url === 'string' && data.thumbnail_url) {
+        return data.thumbnail_url;
+      }
+    }
+  } catch {
+    // Fall back to the generic thumbnail helper below.
+  }
+
+  return getVideoThumbnailSrc(src);
+}
+
 export default function MasonryGallery({ photos }: MasonryGalleryProps) {
   const router = useRouter();
   const [lightbox, setLightbox] = useState<Photo | null>(null);
   const [imgError, setImgError] = useState<Set<string>>(new Set());
+  const [videoThumbs, setVideoThumbs] = useState<Record<string, string | null>>({});
 
   const close = useCallback(() => setLightbox(null), []);
+
+  useEffect(() => {
+    const pending = photos.filter((photo) => photo.type === 'video' && photo.src && videoThumbs[photo.src] === undefined);
+
+    if (!pending.length) {
+      return;
+    }
+
+    pending.forEach((photo) => {
+      getRemoteVideoThumbnail(photo.src).then((thumbnail) => {
+        setVideoThumbs((prev) => ({ ...prev, [photo.src]: thumbnail }));
+      });
+    });
+  }, [photos, videoThumbs]);
 
   const storyMap = new Map<string, StoryGroup>();
 
@@ -100,6 +211,8 @@ export default function MasonryGallery({ photos }: MasonryGalleryProps) {
             <div key={ci} style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
               {col.map((card, pi) => {
                 const photo = card.type === 'story' ? card.cover : card.photo;
+                const videoThumbnailSrc = photo.type === 'video' ? (videoThumbs[photo.src] ?? getVideoThumbnailSrc(photo.src)) : null;
+
                 return (
                   <motion.div
                     key={card.key}
@@ -140,6 +253,59 @@ export default function MasonryGallery({ photos }: MasonryGalleryProps) {
                           {photo.src.split('/').pop()}
                         </span>
                       </div>
+                    ) : photo.type === 'video' ? (
+                      videoThumbnailSrc ? (
+                        <>
+                          <img
+                            src={videoThumbnailSrc}
+                            alt={photo.alt}
+                            style={{
+                              width: '100%',
+                              height: '100%',
+                              objectFit: 'cover',
+                              transition: 'transform 0.6s ease',
+                              display: 'block',
+                            }}
+                            className="gallery-img"
+                            onError={() => setImgError((prev) => new Set([...prev, photo.src]))}
+                          />
+                          <div style={{
+                            position: 'absolute',
+                            inset: 0,
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            background: 'rgba(0,0,0,0.3)',
+                            pointerEvents: 'none',
+                          }}>
+                            <div style={{
+                              width: 64,
+                              height: 64,
+                              borderRadius: '50%',
+                              background: 'rgba(255,255,255,0.9)',
+                              display: 'flex',
+                              alignItems: 'center',
+                              justifyContent: 'center',
+                              fontSize: 24,
+                            }}>▶</div>
+                          </div>
+                        </>
+                      ) : (
+                        <div style={{
+                          width: '100%',
+                          height: '100%',
+                          background: 'var(--surface)',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          padding: 24,
+                          textAlign: 'center',
+                        }}>
+                          <span style={{ fontSize: 12, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--muted)' }}>
+                            {photo.alt}
+                          </span>
+                        </div>
+                      )
                     ) : (
                       <Image
                         src={photo.src}
@@ -150,7 +316,8 @@ export default function MasonryGallery({ photos }: MasonryGalleryProps) {
                         className="gallery-img"
                         onError={() => setImgError((prev) => new Set([...prev, photo.src]))}
                       />
-                    )}
+                    )
+                    }
                     <div className="gallery-overlay" style={{
                       position: 'absolute',
                       inset: 0,
@@ -250,6 +417,20 @@ export default function MasonryGallery({ photos }: MasonryGalleryProps) {
                     {lightbox.alt}
                   </span>
                 </div>
+              ) : lightbox.type === 'video' ? (
+                <iframe
+                  src={getVideoEmbedUrl(lightbox.src)}
+                  width="100%"
+                  height="100%"
+                  style={{
+                    border: 'none',
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                  }}
+                  allow="autoplay; fullscreen; picture-in-picture"
+                  allowFullScreen
+                />
               ) : (
                 <Image
                   src={lightbox.src}
