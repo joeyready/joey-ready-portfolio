@@ -156,6 +156,14 @@ export const photos: Photo[] = [
     width: 1800,
     height: 1800,
   },
+  {
+    id: 'Charlotte Stone Shoes',
+    src: '/images/charlotte-stone-shoes-4.jpg',
+    alt: 'Charlotte Stone Shoes',
+    category: 'Product',
+    width: 1600,
+    height: 1600,
+  },
 
 
   // ── PEOPLE ──
@@ -215,6 +223,14 @@ export const photos: Photo[] = [
     storyId: 'thankyoux',
     storyTitle: 'ThankYouX',
     storyOrder: 5,
+  },
+  {
+    id: 'Charlotte Stone Shoes',
+    src: '/images/charlotte-stone-shoes-5.jpg',
+    alt: 'Charlotte Stone Shoes',
+    category: 'People',
+    width: 1600,
+    height: 1200,
   },
 
 
