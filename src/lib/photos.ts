@@ -149,6 +149,14 @@ export const photos: Photo[] = [
     height: 675,
   },
   {
+    id: 'Better Booch',
+    src: '/images/better-booch-3.jpg',
+    alt: 'Better Booch',
+    category: 'Product',
+    width: 1600,
+    height: 1600,
+  },
+  {
     id: 'Blush Wellness',
     src: '/images/blush-wellness-4.jpg',
     alt: 'Blush Wellness',
@@ -168,7 +176,22 @@ export const photos: Photo[] = [
 
   // ── PEOPLE ──
 
-
+  {
+    id: 'Eric Andre',
+    src: '/images/eric-andre-1.jpg',
+    alt: 'Eric Andre Polaroid',
+    category: 'People',
+    width: 1000,
+    height: 800,
+  },
+  {
+    id: 'Charlotte Lawrence',
+    src: '/images/charlotte-lawrence-1.jpg',
+    alt: 'Charlotte Lawrence',
+    category: 'People',
+    width: 1200,
+    height: 800,
+  },
   {
     id: 'thankyoux-1',
     src: '/images/thankyoux-1.jpg',
@@ -231,6 +254,14 @@ export const photos: Photo[] = [
     category: 'People',
     width: 1600,
     height: 1200,
+  },
+  {
+    id: 'Natasha Leggero',
+    src: '/images/natasha-leggero-1.jpg',
+    alt: 'Natasha Leggero Polaroid',
+    category: 'People',
+    width: 1000,
+    height: 800,
   },
 
 
