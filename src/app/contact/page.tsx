@@ -77,7 +77,8 @@ export default function ContactPage() {
             <form action="https://formsubmit.co/joeyready@gmail.com" method="POST">
                 <input type="hidden" name="_subject" value="New portfolio inquiry" />
                 <input type="hidden" name="_template" value="table" />
-                <input type="hidden" name="_captcha" value="false" />
+                <input type="hidden" name="_captcha" value="true" />
+                <input className="contact-honeypot" type="text" name="_honey" tabIndex={-1} autoComplete="off" />
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24, marginBottom: 28 }}>
                   <FormField name="firstName" label="First Name" placeholder="Jane" type="text" required />
                   <FormField name="lastName" label="Last Name" placeholder="Smith" type="text" required />
@@ -131,6 +132,7 @@ export default function ContactPage() {
 
       <style>{`
         input::placeholder, textarea::placeholder { color: var(--border); }
+        .contact-honeypot { display: none; }
         input:focus, select:focus, textarea:focus { border-bottom-color: var(--accent) !important; outline: none; }
         .contact-link:hover { color: var(--accent) !important; }
         .contact-submit:hover { background: #fff !important; }
