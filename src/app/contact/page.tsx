@@ -60,9 +60,7 @@ export default function ContactPage() {
                   <div>
                     <p style={{ fontSize: 9, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--muted)', marginBottom: 4 }}>{label}</p>
                     {href ? (
-                      <a href={href} style={{ fontSize: 13, color: 'var(--text)', textDecoration: 'none', transition: 'color 0.3s' }}
-                        onMouseEnter={e => (e.currentTarget.style.color = 'var(--accent)')}
-                        onMouseLeave={e => (e.currentTarget.style.color = 'var(--text)')}>
+                      <a className="contact-link" href={href} style={{ fontSize: 13, color: 'var(--text)', textDecoration: 'none', transition: 'color 0.3s' }}>
                         {value}
                       </a>
                     ) : (
@@ -120,8 +118,7 @@ export default function ContactPage() {
                     textTransform: 'uppercase',
                     transition: 'background 0.3s, transform 0.2s',
                   }}
-                  onMouseEnter={e => (e.currentTarget.style.background = '#fff')}
-                  onMouseLeave={e => (e.currentTarget.style.background = 'var(--accent)')}
+                  className="contact-submit"
                 >
                   Send Message
                 </button>
@@ -135,6 +132,8 @@ export default function ContactPage() {
       <style>{`
         input::placeholder, textarea::placeholder { color: var(--border); }
         input:focus, select:focus, textarea:focus { border-bottom-color: var(--accent) !important; outline: none; }
+        .contact-link:hover { color: var(--accent) !important; }
+        .contact-submit:hover { background: #fff !important; }
         @media(max-width:1024px){
           .contact-grid{grid-template-columns:1fr!important}
           .contact-left{border-right:none!important;border-bottom:1px solid var(--border);padding:60px 40px!important}
