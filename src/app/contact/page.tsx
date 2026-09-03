@@ -1,6 +1,3 @@
-'use client';
-
-import { useState } from 'react';
 import Footer from '@/components/Footer';
 
 const projectTypes = [
@@ -15,16 +12,6 @@ const projectTypes = [
 ];
 
 export default function ContactPage() {
-  const [status, setStatus] = useState<'idle' | 'sending' | 'sent'>('idle');
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setStatus('sending');
-    // TODO: wire up to Resend / Formspree / your preferred email service
-    await new Promise((r) => setTimeout(r, 1200));
-    setStatus('sent');
-  };
-
   return (
     <>
       <div style={{ paddingTop: 120 }}>
@@ -57,7 +44,7 @@ export default function ContactPage() {
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
               {[
-                // { icon: '✉', label: 'Email', value: 'joey@joeyready.com', href: 'mailto:joey@joeyready.com' },
+                // { icon: '✉', label: 'Email', value: 'joeyready@gmail.com', href: 'mailto:joeyready@gmail.com' },
                 { icon: '◎', label: 'Location', value: 'Southern California, USA', href: null },
                 { icon: '↗', label: 'Instagram', value: '@joeyreadyphoto', href: 'https://instagram.com/joeyreadyphoto' },
               ].map(({ icon, label, value, href }) => (
@@ -89,27 +76,23 @@ export default function ContactPage() {
 
           {/* Right — form */}
           <div style={{ padding: '80px 64px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }} className="contact-right">
-            {status === 'sent' ? (
-              <div style={{ textAlign: 'center' }}>
-                <p style={{ fontFamily: 'var(--font-display)', fontSize: 48, fontWeight: 300, color: 'var(--accent)', marginBottom: 16 }}>✓</p>
-                <p style={{ fontFamily: 'var(--font-display)', fontSize: 32, fontWeight: 300, marginBottom: 12 }}>Message sent.</p>
-                <p style={{ fontSize: 13, color: 'var(--muted)', lineHeight: 1.7 }}>I&apos;ll get back to you within 1–2 business days.</p>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit}>
+            <form action="https://formsubmit.co/joeyready@gmail.com" method="POST">
+                <input type="hidden" name="_subject" value="New portfolio inquiry" />
+                <input type="hidden" name="_template" value="table" />
+                <input type="hidden" name="_captcha" value="false" />
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24, marginBottom: 28 }}>
-                  <FormField label="First Name" placeholder="Jane" type="text" required />
-                  <FormField label="Last Name" placeholder="Smith" type="text" required />
+                  <FormField name="firstName" label="First Name" placeholder="Jane" type="text" required />
+                  <FormField name="lastName" label="Last Name" placeholder="Smith" type="text" required />
                 </div>
                 <div style={{ marginBottom: 28 }}>
-                  <FormField label="Email" placeholder="jane@brand.com" type="email" required />
+                  <FormField name="email" label="Email" placeholder="jane@brand.com" type="email" required />
                 </div>
                 <div style={{ marginBottom: 28 }}>
-                  <FormField label="Company / Brand" placeholder="Brand name (optional)" type="text" />
+                  <FormField name="company" label="Company / Brand" placeholder="Brand name (optional)" type="text" />
                 </div>
                 <div style={{ marginBottom: 28 }}>
                   <label style={labelStyle}>Project Type</label>
-                  <select style={{ ...inputStyle, backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23666' stroke-width='1' fill='none'/%3E%3C/svg%3E")`, backgroundRepeat: 'no-repeat', backgroundPosition: 'right 8px center', appearance: 'none' as const }}>
+                  <select name="projectType" style={{ ...inputStyle, backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23666' stroke-width='1' fill='none'/%3E%3C/svg%3E")`, backgroundRepeat: 'no-repeat', backgroundPosition: 'right 8px center', appearance: 'none' as const }}>
                     <option value="">Select a category</option>
                     {projectTypes.map(t => <option key={t} value={t} style={{ background: 'var(--bg2)' }}>{t}</option>)}
                   </select>
@@ -117,6 +100,7 @@ export default function ContactPage() {
                 <div style={{ marginBottom: 28 }}>
                   <label style={labelStyle}>Tell me about your project</label>
                   <textarea
+                    name="message"
                     placeholder="Timeline, budget, vision..."
                     rows={4}
                     style={{ ...inputStyle, resize: 'none', height: 'auto' }}
@@ -124,7 +108,6 @@ export default function ContactPage() {
                 </div>
                 <button
                   type="submit"
-                  disabled={status === 'sending'}
                   style={{
                     padding: '16px 48px',
                     background: 'var(--accent)',
@@ -136,15 +119,13 @@ export default function ContactPage() {
                     letterSpacing: '0.25em',
                     textTransform: 'uppercase',
                     transition: 'background 0.3s, transform 0.2s',
-                    opacity: status === 'sending' ? 0.7 : 1,
                   }}
-                  onMouseEnter={e => { if (status !== 'sending') (e.currentTarget.style.background = '#fff'); }}
+                  onMouseEnter={e => (e.currentTarget.style.background = '#fff')}
                   onMouseLeave={e => (e.currentTarget.style.background = 'var(--accent)')}
                 >
-                  {status === 'sending' ? 'Sending...' : 'Send Message'}
+                  Send Message
                 </button>
               </form>
-            )}
           </div>
         </div>
       </div>
@@ -191,13 +172,13 @@ const inputStyle: React.CSSProperties = {
   transition: 'border-color 0.3s',
 };
 
-function FormField({ label, placeholder, type, required }: {
-  label: string; placeholder: string; type: string; required?: boolean;
+function FormField({ name, label, placeholder, type, required }: {
+  name: string; label: string; placeholder: string; type: string; required?: boolean;
 }) {
   return (
     <div>
       <label style={labelStyle}>{label}</label>
-      <input type={type} placeholder={placeholder} required={required} style={inputStyle} />
+      <input name={name} type={type} placeholder={placeholder} required={required} style={inputStyle} />
     </div>
   );
 }
